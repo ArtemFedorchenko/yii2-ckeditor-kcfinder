@@ -60,9 +60,13 @@ class CKEditor extends InputWidget
      */
     public $editorOptions = [];
 
+    private $configuredSession = false;
+
     public function init()
     {
         parent::init();
+
+        $this->configureSession();
 
         $view = $this->getView();
         $id = Json::encode($this->options['id']);
@@ -101,5 +105,36 @@ class CKEditor extends InputWidget
         } else {
             echo Html::textarea($this->name, $this->value, $this->options);
         }
+    }
+
+    private function configureSession() {
+        if ($this->configuredSession) {
+            return;
+        }
+
+        if (isset(Yii::$app->params['KCFinderConfig'])) {
+            $kcFinderConfig = Yii::$app->params['KCFinderConfig'];
+
+            if (!is_array($kcFinderConfig)) {
+                throw new \RuntimeException('KCFinderConfig param must be an array.');
+            }
+
+            foreach (['uploadURL', 'uploadDir'] as $confKey) {
+                if (isset($kcFinderConfig[$confKey])) {
+                    $kcFinderConfig[$confKey] = Yii::getAlias($kcFinderConfig[$confKey]);
+                }
+            }
+
+            if (isset(Yii::$app->session['KCFINDER'])) {
+                Yii::$app->session['KCFINDER'] = ArrayHelper::merge(
+                    (array) Yii::$app->session['KCFINDER'],
+                    $kcFinderConfig
+                );
+            } else {
+                Yii::$app->session['KCFINDER'] = $kcFinderConfig;
+            }
+        }
+
+        $this->configuredSession = true;
     }
 }
