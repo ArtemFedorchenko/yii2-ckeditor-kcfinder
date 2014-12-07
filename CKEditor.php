@@ -79,12 +79,18 @@ class CKEditor extends InputWidget
             $this->editorOptions = ArrayHelper::merge(
                 $this->editorOptions,
                 [
-                    'filebrowserBrowseUrl'      => $kcFinderBaseUrl . '/browse.php?opener=ckeditor&type=files',
-                    'filebrowserImageBrowseUrl' => $kcFinderBaseUrl . '/browse.php?opener=ckeditor&type=images',
-                    'filebrowserFlashBrowseUrl' => $kcFinderBaseUrl . '/browse.php?opener=ckeditor&type=flash',
-                    'filebrowserUploadUrl'      => $kcFinderBaseUrl . '/upload.php?opener=ckeditor&type=files',
-                    'filebrowserImageUploadUrl' => $kcFinderBaseUrl . '/upload.php?opener=ckeditor&type=images',
-                    'filebrowserFlashUploadUrl' => $kcFinderBaseUrl . '/upload.php?opener=ckeditor&type=flash',
+                    'filebrowserBrowseUrl'      => $kcFinderBaseUrl
+                        . '/browse.php?opener=ckeditor&type=files',
+                    'filebrowserImageBrowseUrl' => $kcFinderBaseUrl
+                        . '/browse.php?opener=ckeditor&type=images',
+                    'filebrowserFlashBrowseUrl' => $kcFinderBaseUrl
+                        . '/browse.php?opener=ckeditor&type=flash',
+                    'filebrowserUploadUrl'      => $kcFinderBaseUrl
+                        . '/upload.php?opener=ckeditor&type=files',
+                    'filebrowserImageUploadUrl' => $kcFinderBaseUrl
+                        . '/upload.php?opener=ckeditor&type=images',
+                    'filebrowserFlashUploadUrl' => $kcFinderBaseUrl
+                        . '/upload.php?opener=ckeditor&type=flash',
                     'allowedContent'            => true,
                 ]
             );
